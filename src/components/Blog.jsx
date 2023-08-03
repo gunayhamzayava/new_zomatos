@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./Blog.css";
-import "./Responsive__.css";
 import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import "./Responsive__.css";
+import "./Blog.css";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
-
+  const { id } = useParams();
   useEffect(() => {
     fetch("http://localhost:8000/blogs/")
       .then((response) => response.json())
@@ -13,7 +13,7 @@ function Blog() {
         setBlogs(data);
         console.log(data);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="mainss">
@@ -37,14 +37,17 @@ function Blog() {
           </li>
         </ul>
       </div>
+      <br />
       <div className="blog-map">
         {blogs.map((blog) => (
-          <div key={blog.id}>
+          <div key={blog.id} className="blog__one">
             <Link to={`/blog/${blog.id}`}>
               <div>
                 <img src={blog.image} alt="" />
               </div>
+              <br />
               <div>
+                <p>{blog.category}</p>
                 <h4>{blog.title}</h4>
                 <p>{blog.created_date}</p>
                 <span>{blog.description}</span>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import "./Responsive__.css";
 function Company() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/blogs/")
+    fetch("http://localhost:8000/blogs/?category=company")
       .then((response) => response.json())
       .then((data) => {
         setBlogs(data);
@@ -34,16 +34,20 @@ function Company() {
           </li>
         </ul>
       </div>
+      <br />
       <div className="blog-map">
-        {blogs.slice(20,30).map((blog) => (
-          <div key={blog.id}>
+        {blogs.map((blog) => (
+          <div key={blog.id} className="blog__one">
             <Link to={`/blog/${blog.id}`}>
               <div>
                 <img src={blog.image} alt="" />
               </div>
+              <br />
               <div>
+                <p>{blog.category}</p>
                 <h4>{blog.title}</h4>
                 <p>{blog.created_date}</p>
+                <span>{blog.description}</span>
               </div>
             </Link>
           </div>

@@ -134,7 +134,14 @@
     align-items: flex-start;
     grid-gap: 40px;
 }
+.first_three_blog{
+    width: 10%;
+}
 
+.container_blog img{
+    width: 350px;
+    height: 200px !important;
+}
 
 .blog__wwa a {
     text-decoration: none;

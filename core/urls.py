@@ -11,8 +11,8 @@ urlpatterns = [
     path('contacts/', contact_view, name='contact'),
     path("", TemplateView.as_view(template_name="base.html")),
     path('api/', include('restaurant.urls')),
-    path("blogs/", blog_list_view, name="blog"),
-    path("<int:id>/blogs", blog_list_view, name="blog_id"),
+    path("blogs/", BlogListView.as_view(), name="blog"),
+    re_path(r'^article/(?P<id>\d+)/$', get_article, name='get_article'),
     path('delivery/', views.get_delivery_data, name='get_delivery_data'),
     re_path(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='base.html')),
 ]

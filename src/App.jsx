@@ -25,6 +25,7 @@ import Collection2 from "./pages/Collection2";
 import Collection3 from "./pages/Collection3";
 import Collection4 from "./pages/Collection4";
 import ZomatoApp from "./pages/ZomatoApp";
+import Error from "./pages/Error";
 
 import { useState } from "react";
 
@@ -65,6 +66,7 @@ function App() {
     "collection3",
     "collection4",
     "zomatoapp",
+    "blog",
   ];
 
   return (
@@ -84,6 +86,7 @@ function App() {
         <Route path="/technology/" element={<Technology />} />
         <Route path="/feedback/" element={<FeedBack />} />
         <Route path="/blog/:id/" element={<Article />} />
+        <Route path="*" element={<Error />} />
         {/* -------------------------------------------- */}
         <Route path="/profile/" element={<Profile />} />
         <Route path="/collection1/" element={<Collection1 />} />

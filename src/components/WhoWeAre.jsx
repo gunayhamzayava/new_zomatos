@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 import "../components/WhoWeAre.css";
 import "./Responsive__.css";
-import Carousel from "react-bootstrap/Carousel";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -188,17 +187,14 @@ function WhoWeAre() {
           </p>
         </div>
         <div className="container_blog">
-          {blogs.slice(0,3).map((blog) => (
-            <div key={blog.id}>
+          {blogs.slice(0, 3).map((blog) => (
+            <div key={blog.id} className="blog__wwa">
               <Link to={`/blog/${blog.id}`}>
-                <div>
-                  <img src={blog.image} alt="" />
-                </div>
-                <div>
-                  <h4>{blog.title}</h4>
-                  <p>{blog.created_date}</p>
-                  <span>{blog.description}</span>
-                </div>
+                <img src={blog.image} alt="" />
+                <br />
+                <h4>{blog.title.slice(0, 15) + "..."}</h4>
+                <p>{blog.created_date}</p>
+                <span>{blog.description.slice(0, 50) + "..."}</span>
               </Link>
             </div>
           ))}

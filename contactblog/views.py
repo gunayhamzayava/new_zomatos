@@ -1,35 +1,44 @@
-from django.http import JsonResponse, HttpResponse
+from django_filters.rest_framework import DjangoFilterBackend
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from django.core.mail import send_mail
-from django.conf import settings
-from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status, generics
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.conf import settings
 from .serializers import *
+from .filters import *
 from .models import *
 import json
-from django.shortcuts import redirect
+
+
+class BlogListView(generics.ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = BlogFilter
 
 
 @api_view(["GET"])
-def blog_list_view(request):
-    recipes = Blog.objects.all()
-    serializer = BlogSerializer(recipes, many=True)
-    return Response(serializer.data)
+def get_article(request, id):
+    try:
+        blog = Blog.objects.get(id=id)
+        serializer = BlogSerializer(blog)
+        return Response(serializer.data)
+    except Blog.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @csrf_exempt
 def contact_view(request):
     if request.method == 'POST':
-        # Get the raw JSON data from the request body
         try:
             data = json.loads(request.body)
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data.'}, status=400)
 
-        # Extract name, email, and message from the JSON data
         name = data.get('name')
         email = data.get('email')
         message = data.get('message')

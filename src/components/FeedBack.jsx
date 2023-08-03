@@ -1,6 +1,5 @@
-import React from "react";
-import "./FeedBack.css";
 import "./Responsive__.css";
+import "./FeedBack.css";
 
 function FeedBack() {
   return (
@@ -14,7 +13,10 @@ function FeedBack() {
       </section>
       <div className="feedback-and-report">
         <div className="feedback__content">
-          <img src="https://b.zmtcdn.com/webFrontend/664c057ea182068abc11230bcd4266761602141655.jpeg?output-format=webp" alt="" />
+          <img
+            src="https://b.zmtcdn.com/webFrontend/664c057ea182068abc11230bcd4266761602141655.jpeg?output-format=webp"
+            alt=""
+          />
           <h2>
             Your feedback has been noted and we will take the necesarry actioon.
           </h2>
@@ -38,6 +40,7 @@ function FeedBack() {
           </div>
         </div>
       </div>
+      <br />
     </div>
   );
 }

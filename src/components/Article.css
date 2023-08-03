@@ -13,15 +13,16 @@
     color: #b5b5b5;
 }
 
-.article h2 {
+.article h4 {
     transition: color .1s ease;
     display: block;
-    line-height: 50px;
+    line-height: 35px;
     color: #000;
-    font-size: 40px;
+    font-size: 22px;
     text-decoration: none;
     letter-spacing: -.5px;
 }
+
 
 .article p,
 h5 {
@@ -46,8 +47,9 @@ h5 {
     gap: 10px;
 }
 
-.social__media img {
-    height: 27px;
-    width: 27px;
+.social__media i {
+    font-size: 27px;
+    color: #000;
     cursor: pointer;
+    margin-right: 15px;
 }

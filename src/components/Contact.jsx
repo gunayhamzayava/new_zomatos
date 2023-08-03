@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import "./Contact.css";
 import "./Responsive__.css";
-import { Link } from "react-router-dom";
+import "./Contact.css";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -9,12 +8,14 @@ function Contact() {
     email: "",
     message: "",
   });
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,14 +27,12 @@ function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
       if (response.ok) {
-        alert("Teşekkürler! İletişim bilgileriniz kaydedildi.");
+        alert(".");
       } else {
-        alert("Formu göndermek mümkün olmadı: " + data.error);
+        window.location.href = "/feedback";
       }
-    } 
-    catch (error) {
+    } catch (error) {
       alert("Formu göndermek mümkün olmadı: " + error.message);
     }
   };
@@ -84,10 +83,7 @@ function Contact() {
               ></textarea>
               <span>Type text</span>
             </div>
-            <button type="submit">
-              Submit feedback
-              {/* <Link to={"/feedback"}></Link> */}
-            </button>
+            <button type="submit">Submit feedback</button>
           </form>
         </div>
         <div className="report">
